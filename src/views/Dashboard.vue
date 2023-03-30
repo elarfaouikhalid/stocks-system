@@ -808,7 +808,7 @@ watch: {
   'product.cost': function(newVal, oldVal) {
     if (newVal > this.product.price) {
       swal({
-        title: "Be Attention!",
+        title: "Be Attention!!",
         text: 'Price cannot be lower than cost',
         icon: "warning",
         button: "OK",
