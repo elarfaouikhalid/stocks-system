@@ -765,7 +765,7 @@ methods: {
   getCustomerlast(days) {
     this.getDays = days
     console.log(`woow ${days}`)
-    this.customerAnalytics(this.getDays)
+    this.customerAnalytics(days ?? 7)
     this.dropdownText = `Last ${days} days`;
     this.activeItem = days;
     // this.fetchChartData(days)
