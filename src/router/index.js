@@ -8,6 +8,7 @@ import Profile from "@/views/Profile.vue"
 import Customers from "@/views/Customers"
 import Invoice from "@/views/Invoice"
 import Logs from "@/views/Logs"
+import Payment from "@/views/Payment"
 import swal from 'sweetalert';
 
 const routes = [
@@ -56,10 +57,30 @@ const routes = [
         text: "make sure to select customer you would like to create an order for",
         icon: "warning",
         button: "OK"
-    }).then((result) => {
-        next();
-    });
+      }).then((result) => {
+          next();
+      });
+      document.body.style.overflow = 'auto';
+      const modalBackdrop = document.querySelector('.modal-backdrop.fade.show');
+        if (modalBackdrop) {
+          modalBackdrop.parentNode.removeChild(modalBackdrop);
+        }
+      next();
     
+    }
+    
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: Payment,
+    beforeEnter: (to, from, next) => {
+      // console.log(store.getters['auth/authenticated'])
+      if(!store.getters['auth/authenticated']) {
+        return next({ name: 'Signin' })
+      }
+
+      next()
     }
   },
   {

@@ -42,11 +42,6 @@
                        </tr>
                      </thead>
                      <tbody>
-                      <tr>
-                        <div>
-                          no data was found
-                        </div>
-                      </tr>
                        <tr v-for="(customer, index) in customers" :key="index">
                          <td>
                            <span class="flag flag-country-us"></span>
@@ -65,11 +60,6 @@
                          <td class="text-end">
                            <button class="btn btn-primary" @click="showCreateOrderModal(customer.id, customer.name)">
                             create Order
-                           </button>
-                         </td>
-                         <td>
-                          <button class="btn btn-success">
-                            create Invoice
                            </button>
                          </td>
                        </tr>
@@ -114,7 +104,7 @@
             <h5 class="modal-title">Create an Order for Customer #{{ selectedCustomerName }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form @submit.prevent="storeOrder()">
+          <form @submit.prevent="nextStep()">
           <div class="modal-body">
             <div class="mb-3">
               <label class="form-label">Name</label>
@@ -131,7 +121,7 @@
             <button type="submit" class="btn btn-success ms-auto">
               <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
               <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-              Confirm
+              Continue
             </button>
           </div>
           </form>
@@ -159,6 +149,8 @@ export default {
     components: { Navbar },
     created() {
         this.GetCustomers();        
+        // const createOrderModal = new bootstrap.Modal(document.getElementById('createOrderModal'), {});
+        // createOrderModal.hide();
     },
     mounted() {
     },
@@ -211,6 +203,13 @@ export default {
             } catch (error) {
                 console.error(error);
             }
+        },
+        async nextStep() {
+          try {
+              this.$router.push('/Invoice');
+          } catch (error) {
+            // Handle the error
+          }
         },
     },
     computed: {

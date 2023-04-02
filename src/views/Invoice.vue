@@ -266,7 +266,7 @@ export default {
             // console.log(this.invoiceProducts);
             this.invoiceData.push({
               customer_id: this.customerId,
-              order_id: this.OrderId,
+              // order_id: this.OrderId,
               total_amount: product.price
             });
             this.showSuggestions = false;
@@ -310,7 +310,7 @@ export default {
         async CreateCustomerInvoice() {
           const invoiceData = {
             customer_id: this.customerId,
-            order_id: this.OrderId,
+            // order_id: this.OrderId,
             total_amount: this.invoice.total_amount
           };
           
