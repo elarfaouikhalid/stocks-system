@@ -256,7 +256,9 @@ export default {
             "getProfileData": "auth/getProfileData"
         }),
         logOut() {
-            this.signOut().then(() => this.$router.replace({ name: 'Signin' }))
+            this.signOut();
+            console.log("test SIGN out");
+            this.$router.replace({ name: 'Signin' })
         }
     },
     created() {
