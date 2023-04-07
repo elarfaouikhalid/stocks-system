@@ -4,6 +4,7 @@ import product from './product/index';
 import customer from './Customer/index'
 import order from './Order/index'
 import invoice from './Invoice/index'
+import payment from "./Payment/index"
 
 export default createStore({
   state: {
@@ -20,5 +21,6 @@ export default createStore({
     customer,
     order,
     invoice,
+    payment,
   }
 })

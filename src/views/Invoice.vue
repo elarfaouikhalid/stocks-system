@@ -57,45 +57,21 @@
                       <th class="text-center" style="width: 1%"></th>
                       <th>Product</th>
                       <th class="text-center" style="width: 1%">Qnt</th>
-                      <th class="text-end" style="width: 1%">Unit</th>
+                      <th class="text-end" style="width: 1%">Price</th>
                       <th class="text-end" style="width: 1%">Amount</th>
                     </tr>
                   </thead>
-                  <tr>
-                    <td class="text-center">1</td>
+                  <tr v-for="(product, index) in invoiceProducts" :key="product.id">
+                    <td class="text-center"></td>
                     <td>
-                      <p class="strong mb-1">Logo Creation</p>
+                      <p class="strong mb-1">{{ product.name }}</p>
                       <div class="text-muted">Logo and business cards design</div>
                     </td>
                     <td class="text-center">
-                      1
+                      {{ product.quantity }}
                     </td>
-                    <td class="text-end">$1.800,00</td>
-                    <td class="text-end">$1.800,00</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">2</td>
-                    <td>
-                      <p class="strong mb-1">Online Store Design &amp; Development</p>
-                      <div class="text-muted">Design/Development for all popular modern browsers</div>
-                    </td>
-                    <td class="text-center">
-                      1
-                    </td>
-                    <td class="text-end">$20.000,00</td>
-                    <td class="text-end">$20.000,00</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">3</td>
-                    <td>
-                      <p class="strong mb-1">App Design</p>
-                      <div class="text-muted">Promotional mobile application</div>
-                    </td>
-                    <td class="text-center">
-                      1
-                    </td>
-                    <td class="text-end">$3.200,00</td>
-                    <td class="text-end">$3.200,00</td>
+                    <td class="text-end">${{ product.price }}</td>
+                    <td class="text-end">${{ product.sum }}</td>
                   </tr>
                   <tr>
                     <td colspan="4" class="strong text-end">Subtotal</td>
@@ -322,8 +298,15 @@ export default {
             sum: product.sum
           }));
           console.log(productData)
-          const res =  await this.CreateInvoice({ InvoiceData: invoiceData, ProductData: productData });
-          this.showInvoiceModal = false;
+          const res =  await this.CreateInvoice({ InvoiceData: invoiceData, ProductData: productData })
+          .then(() => {
+            this.showInvoiceModal = false
+            document.body.style.overflow = 'auto';
+            const modalBackdrop = document.querySelector('.modal-backdrop.fade.show');
+              if (modalBackdrop) {
+                modalBackdrop.parentNode.removeChild(modalBackdrop);
+              }
+          })
         },
         deleteProduct(product, index) {
           const existingProduct = this.invoiceProducts.find(p => p.id === product.id);
