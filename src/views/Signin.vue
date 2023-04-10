@@ -20,6 +20,7 @@
               <div class="checkmark"></div>
               <small class="rmb">Remember me</small>
             </label>
+            <label for="">test</label>
           </div>
           <div>
             <a href="#" class="forgetpass">Forget Password?</a>
