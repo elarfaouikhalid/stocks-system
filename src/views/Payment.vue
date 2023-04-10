@@ -6,10 +6,10 @@
           <div class="card-body">
             <div>
               <label class="form-label">Clients</label>
-                <input class="form-select mb-0" type="text" v-model="dataSearch" name="dataSearch" id="name" placeholder="Search..." @input="handleInput"/>
-                <ul v-if="showSuggestions" >
-                    <li v-for="suggestion in products" :key="suggestion">
-                        {{ suggestion.name }}
+                <input class="form-select mb-0" type="text" v-model="customerName" name="dataSearch" id="name" placeholder="Search..." @input="handleInput"/>
+                <ul v-if="showSuggestions">
+                    <li v-for="customer in customers" :key="customer" @click="addName(customer.name)">
+                        {{ customer.name }}
                     </li>
                 </ul>
             </div>
@@ -26,7 +26,7 @@
         <div class="row align-items-center mt-3">
           <div class="col-4">
             <div class="progress">
-              <div class="progress-bar" style="width: 25%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="25% Complete">
+              <div class="progress-bar" :style="{ width: width }" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="25% Complete">
                 <span class="visually-hidden">25% Complete</span>
               </div>
             </div>
@@ -46,11 +46,32 @@
     </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
     data() {
         return {
             showSuggestions: true,
+            width: "",
+            customerName: ''
         }
+    },
+    computed: {
+      ...mapGetters({
+        'customers': 'payment/customers',
+      })
+    },
+    created() {
+      this.createpayment()
+    },
+    methods: {
+      ...mapActions({
+           'createpayment': 'payment/Createpayment',
+        }),
+      addName(name) {
+        this.customerName = name
+        this.width = "25%G"
+        this.width += "25%"
+      }
     }
 }
 </script>

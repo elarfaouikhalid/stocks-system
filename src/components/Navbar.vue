@@ -258,7 +258,7 @@ export default {
         logOut() {
             this.signOut();
             console.log("test SIGN out");
-            this.$router.replace({ name: 'Signin' })
+            return this.$router.replace({ name: 'Signin' })
         }
     },
     created() {

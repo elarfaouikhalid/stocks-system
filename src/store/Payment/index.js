@@ -4,18 +4,24 @@ import swal from 'sweetalert';
 export default {
     namespaced: true,
     state: {
-        
+        customers: []
     },
     mutations: {
-        
+        setCustomers(state, customer) {
+            state.customers.push(customer)
+        }
     },
     getters: {
-
+        customers(state) {
+            return state.customers
+        }
     },
     actions: {
-        Createpayment() {
-            const response = axios.get("payment/customer");
-            
+        async Createpayment({ commit }) {
+            const response = await axios.get("payment/customer");
+            response.data.clients.map((client) => {
+                commit("setCustomers", client)
+            })
         }
     },
 }

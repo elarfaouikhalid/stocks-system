@@ -106,6 +106,7 @@ export default {
         commit('setUser', null)
         commit('setToken', null)
         store.dispatch('auth/attempt', mutation.payload);
+        // this.$router.replace({ name: 'Signin' })
       })
     },
     async logs({ commit, state }) {  
