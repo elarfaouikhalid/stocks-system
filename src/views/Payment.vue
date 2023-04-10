@@ -70,7 +70,6 @@ export default {
       addName(name) {
         this.customerName = name
         this.width = "25%G"
-        this.width += "25%"
       }
     }
 }
