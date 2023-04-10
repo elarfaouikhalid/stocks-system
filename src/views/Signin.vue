@@ -18,8 +18,8 @@
             <label class="container1">
               <input type="checkbox">
               <div class="checkmark"></div>
+              <small class="rmb">Remember me</small>
             </label>
-            <small class="rmb">Remember me</small>
           </div>
           <div>
             <a href="#" class="forgetpass">Forget Password?</a>
@@ -312,8 +312,8 @@ label span {
   position: relative;
   top: 0;
   left: 0;
-  height: 2.3em;
-  width: 2.3em;
+  height: 1.5em;
+  width: 1.5em;
   background-color: #ccc;
   border-radius: 50%;
   transition: .4s;
@@ -349,8 +349,8 @@ label span {
 
 /* Style the checkmark/indicator */
 .container1 .checkmark:after {
-  left: 0.96em;
-  top: 0.7em;
+  left: 0.6em;
+  top: 0.5em;
   width: 0.25em;
   height: 0.5em;
   border: solid white;
